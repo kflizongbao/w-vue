@@ -1,17 +1,3 @@
 /*
-    1、组件初始化函数
-    2、观察对象相关
-       $set
-       $delete
-       $watch
-    3、事件相关，$on
-                $off
-                $once
-                $emit   
-    4、生命周期相关
-                $forceUpdate
-                $destory
-    5、渲染相关
-            _render
-            nextTick
+
 */
