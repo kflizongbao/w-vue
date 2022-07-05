@@ -1,1 +1,3 @@
-export const Hello = (name: string) => `Hello ${name}`;
+import * as wVue from './core/index';
+
+export default wVue;
