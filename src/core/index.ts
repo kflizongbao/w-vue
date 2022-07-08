@@ -9,6 +9,14 @@
 */
 class wVue {
     constructor() {
+        this._init();
+    }
+
+    _init() {
+
+    }
+
+    $mount(options: Object) {
         
     }
 }
