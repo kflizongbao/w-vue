@@ -10,13 +10,16 @@
     3、事件相关
     4、生命周期相关
     5、渲染相关
-
 */
+import { lifecycle } from './lifecycle';
+import { apply } from '../util/mixins';
+
+
 class wVue {
     constructor() {
         
     }
 }
-
+apply(wVue, [lifecycle]);
 // 开始注入私有方法
 export default wVue;

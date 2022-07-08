@@ -3,3 +3,18 @@
 
 
 */
+
+export class lifecycle{
+    
+    _update() {
+
+    }
+    
+    $forceUpdate() {
+        
+    }
+    
+    $destroy() {
+        
+    }
+}
