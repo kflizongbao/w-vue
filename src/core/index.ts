@@ -14,15 +14,9 @@
 */
 class wVue {
     constructor() {
-        this._init();
-    }
-
-    _init() {
-
-    }
-
-    $mount(options: Object) {
-
+        
     }
 }
+
+// 开始注入私有方法
 export default wVue;
