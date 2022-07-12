@@ -20,6 +20,8 @@ class wVue {
         
     }
 }
+
 apply(wVue, [lifecycle]);
+
 // 开始注入私有方法
 export default wVue;
