@@ -6,16 +6,19 @@ module.exports = {
     rules: [
       {
         test: /\.tsx?$/,
-        use: 'ts-loader',
+        use: ["babel-loader", "ts-loader"],
         exclude: /node_modules/
       }
     ]
   },
   resolve: {
-    extensions: [ '.tsx', '.ts', '.js' ]
+    extensions: [ '.ts', '.js' ]
   },
   output: {
-    filename: 'bundle.js',
+    filename: 'wVue.js',
     path: path.resolve(__dirname, 'dist')
-  }
+  },
+  optimization: {
+    minimize: false,
+  },
 };
