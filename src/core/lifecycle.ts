@@ -4,7 +4,7 @@
 
 */
 
-export class lifecycle{
+export class lifecycle {
     
     _update() {
 

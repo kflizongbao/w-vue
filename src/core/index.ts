@@ -12,16 +12,13 @@
     5、渲染相关
 */
 import { lifecycle } from './lifecycle';
-import { apply } from '../util/mixins';
+import { init } from './init';
 
 
-class wVue {
+class wVue implements init, lifecycle {
     constructor() {
-        
     }
 }
-
-apply(wVue, [lifecycle]);
 
 // 开始注入私有方法
 export default wVue;

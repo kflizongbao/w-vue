@@ -1,8 +1,10 @@
-import wVue from ".";
 
 /*
 
 */
-export function initMixin(ve: wVue) {
 
+export class init {
+    _init() {
+
+    }
 }
