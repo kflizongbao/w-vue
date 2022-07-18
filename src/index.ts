@@ -1,3 +1,1 @@
-import * as wVue from './core/index';
-
-export default wVue;
+export * from './core/index';
