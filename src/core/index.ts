@@ -21,8 +21,8 @@ import { apply } from '../util/mixins';
 
 class wVue {
     [x: string]: any;
-    constructor() {
-        this._init();
+    constructor(options: Object) {
+        this._init(options);
     }
 }
 
