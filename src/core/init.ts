@@ -2,7 +2,7 @@
 /*
 
 */
-import { initLifecycle }  from './lifecycle';
+import { initLifecycle, callHook }  from './lifecycle';
 import { initState }  from './state';
 import { initEvents }  from './events';
 import { initRender }  from './render';
@@ -26,13 +26,15 @@ export class initMixins {
         } else {
             // 初始化Vue配置
         }
-        
+        // 编译生成_render函数
         initLifecycle(this, options);
         initEvents(this, options);
         initRender(this, options);
         // beforeCreate
+        callHook(this, 'beforeCreate');
         initState(this, options);
         // created
+        callHook(this, 'created');
         this.$mount();
     }
     

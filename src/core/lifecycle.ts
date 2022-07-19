@@ -13,6 +13,10 @@ function mountComponent() {
     2、挂载实例
  */
 export function initLifecycle(vm: wVue, options: any) {
+    
+}
+
+export function callHook(vm: wVue, method: string) {
 
 }
 
