@@ -4,6 +4,18 @@
     computed
 */
 
-export class state {
+export class stateMixins {
+
+    $watch() {
+
+    }
+
+    $set() {
+
+    }
+
+    $delete() {
+
+    }
 
 }

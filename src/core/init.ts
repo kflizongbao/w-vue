@@ -3,8 +3,11 @@
 
 */
 
-export class init {
+export class initMixins {
+
     _init() {
 
     }
+
+    
 }

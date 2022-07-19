@@ -2,6 +2,14 @@
     渲染
 */
 
-export class render {
+export class renderMixins {
+
+    _render() {
+
+    }
+
+    $nextTick() {
+
+    }
 
 }

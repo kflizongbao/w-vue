@@ -4,8 +4,8 @@
 
 */
 
-export class lifecycle {
-    
+export class lifecycleMixins {
+
     _update() {
 
     }
@@ -17,4 +17,5 @@ export class lifecycle {
     $destroy() {
         
     }
+
 }

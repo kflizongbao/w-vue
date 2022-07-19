@@ -6,19 +6,25 @@
 /*
     模块化之后工程需要导入相关的功能
     1、组件初始化函数
-    2、观察对象相关
+    2、状态相关
     3、事件相关
     4、生命周期相关
     5、渲染相关
 */
-import { lifecycle } from './lifecycle';
-import { init } from './init';
+import { lifecycleMixins } from './lifecycle';
+import { initMixins } from './init';
+import { stateMixins } from './state';
+import { eventsMixins } from './events';
+import { renderMixins } from './render';
 
+import { apply } from '../util/mixins';
 
-class wVue implements init, lifecycle {
+class wVue {
     constructor() {
+
     }
 }
 
-// 开始注入私有方法
+apply(wVue, [lifecycleMixins, initMixins, stateMixins, eventsMixins, renderMixins]);
+
 export default wVue;
