@@ -20,8 +20,9 @@ import { renderMixins } from './render';
 import { apply } from '../util/mixins';
 
 class wVue {
+    [x: string]: any;
     constructor() {
-
+        this._init();
     }
 }
 
