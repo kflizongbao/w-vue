@@ -27,11 +27,11 @@ export class initMixins {
             // 初始化Vue配置
         }
         
-        initLifecycle(this, options);
-        initEvents(this, options);
-        initRender(this, options);
+        initLifecycle(this);
+        initEvents(this);
+        initRender(this);
         // beforeCreate
-        initState(this, options);
+        initState(this);
         // created
         this.$mount();
     }

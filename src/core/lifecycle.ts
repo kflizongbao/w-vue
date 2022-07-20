@@ -12,8 +12,23 @@ function mountComponent() {
  *  1、初始化实例
     2、挂载实例
  */
-export function initLifecycle(vm: wVue, options: any) {
+export function initLifecycle(vm: wVue) {
+    const options = vm.$options;
+    let parent = options?.parent;
+    while (parent) {
+        if (parent.abstract === false) {
+            parent.$children.push(vm);
+        } else {
+            parent = parent.$parent;
+        }
+    }
 
+    // 这些属性是生命周期内必须存在的
+    vm.$parent = parent;
+    vm.$children = [];
+    vm._watcher = null;
+    vm._isMounted = false;
+    vm._isDestroyed = false;
 }
 
 export class lifecycleMixins {

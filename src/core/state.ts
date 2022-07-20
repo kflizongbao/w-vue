@@ -5,7 +5,7 @@
 */
 import wVue from "./index";
 
-export function initState(vm: wVue, options: any) {
+export function initState(vm: wVue) {
 
 }
 

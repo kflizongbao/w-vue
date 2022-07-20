@@ -3,7 +3,7 @@
 */
 import wVue from "./index";
 
-export function initRender(vm: wVue, options: any) {
+export function initRender(vm: wVue) {
 
 }
 
