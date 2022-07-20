@@ -2,7 +2,7 @@
 /*
 
 */
-import { initLifecycle }  from './lifecycle';
+import { initLifecycle, callHook }  from './lifecycle';
 import { initState }  from './state';
 import { initEvents }  from './events';
 import { initRender }  from './render';
@@ -33,6 +33,7 @@ export class initMixins {
         // beforeCreate
         initState(this);
         // created
+        callHook(this, 'created');
         this.$mount();
     }
     

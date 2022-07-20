@@ -22,13 +22,17 @@ export function initLifecycle(vm: wVue) {
             parent = parent.$parent;
         }
     }
-
     // 这些属性是生命周期内必须存在的
     vm.$parent = parent;
     vm.$children = [];
     vm._watcher = null;
     vm._isMounted = false;
     vm._isDestroyed = false;
+}
+
+export function callHook(vm: wVue, method: string) {
+
+
 }
 
 export class lifecycleMixins {
