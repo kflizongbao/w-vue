@@ -15,16 +15,20 @@ function mountComponent() {
 export function initLifecycle(vm: wVue) {
     const options = vm.$options;
     let parent = options?.parent;
-    while (parent) {
-        if (parent.abstract === false) {
-            parent.$children.push(vm);
-        } else {
-            parent = parent.$parent;
-        }
+
+    // 获取第一个非抽象的父组件
+    // 抽象组件为非渲染组件
+    while (parent && parent.abstract) {
+        parent = parent.$parent;
     }
+    parent.$children.push(vm);
+
     // 这些属性是生命周期内必须存在的
-    vm.$parent = parent;
-    vm.$children = [];
+    vm.$parent = parent; // 组件时使用
+    vm.$children = []; // 保存子组件渲染时使用
+
+    vm.$root = parent?.$root??vm; // $root Vue实例组件，这个变量存在的意义是什么
+
     vm._watcher = null;
     vm._isMounted = false;
     vm._isDestroyed = false;
