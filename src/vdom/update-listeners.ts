@@ -27,10 +27,10 @@ function createInvokeHandler(fns: Function | Array<Function>, vm: wVue) {
         if (Array.isArray(invoker.fn)) {
             const clonedFn = invoker.fn.slice();//避免以为移除事件引起回调未调用
             for (let i = 0; i < clonedFn.length; i++) {
-                clonedFn[i].apply(vm, arguments);    
+                clonedFn[i].apply(null, arguments);    
             }
         } else {
-            invoker.fn.apply(vm, arguments);    
+            invoker.fn.apply(null, arguments);    
         }
     };
     invoker.fn = fns;
@@ -51,9 +51,9 @@ export function updateListeners(on: any, oldOn: any, add: Function, remove: Func
             }
     
             if (evt.once) {
-                listener = on[k] = createInvokeOnceHandler(listener, vm);
+                listener = on[k] = createInvokeOnceHandler(evt.name, listener);
             }
-            add(evt, listener, vm);
+            add(evt.name, listener, vm);
         } else if (listener !== listenerOld) {
             listenerOld.fn = listener;//更新旧事件回调防止内存泄漏
         }
@@ -62,7 +62,7 @@ export function updateListeners(on: any, oldOn: any, add: Function, remove: Func
     for (const k in oldOn) {
         if (isUnDef(on[k])) {
             const evt = normalizeEvent(k);
-            remove(evt, oldOn[k], vm);
+            remove(evt.name, oldOn[k], vm);
         }
     }
 }
