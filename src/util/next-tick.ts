@@ -3,8 +3,9 @@
  * ep: this.$nextTick(() => {
  *      codes
  * });
- * 
- * 
+ * 此方法需要考虑浏览器的兼容性
+ * setTimeout
+ * MutationObserver
  * 
 */
 const callbacks: Array<Function> = [];
