@@ -1,4 +1,4 @@
-
+import arrayIntercept from './arr';
 export class Observer {
 
   constructor(val: any) {
@@ -7,20 +7,17 @@ export class Observer {
     // 如果禁止了响应式
     // 组件本身的属性不需要追踪
 
-    // 校验
-    if (val.hasOwnProperty('__ob__')) {
-      return val.__ob__;
-    }
+    // 关联响应式对象
+    defineObserver(val, this);
 
     // 业务逻辑
     if (Array.isArray(val)) {
-      for (let i = 0; i < val.length; i++) {
-        new Observer(val[i]);
-      }
+      // 修改原型链
+      Object.setPrototypeOf(val, arrayIntercept);
+      observeArray(val);
     } else {
-      return observe(val, this);
+      observe(val);
     }
-
   }
 
 
@@ -30,26 +27,35 @@ export class Observer {
 
 }
 
-function observe(val: any, ob: Observer) {
-  for (const k in val) {
-    defineReactive(val, k , val[k]);
-  }
-
+function defineObserver(obj: any, ob: Observer) {
   // 禁止删除
   // 禁止遍历
   // 禁止修改
-  Object.defineProperty(val, '__ob__', {
+
+  Object.defineProperty(obj, '__ob__', {
     enumerable: false,
     configurable: false,
     writable: false,
-    value: {
-      value: val 
-    }
+    value: ob,
   });
-
-  return ob;
 }
 
+function observeArray(arr: Array<Object>) {
+  for (let i = 0; i < arr.length; i++) {
+    new Observer(arr[i]);
+  }
+}
+
+function observe(val: any) {
+  // 校验
+  if (val.hasOwnProperty('__ob__')) {
+    return val.__ob__;
+  }
+
+  for (const k in val) {
+    defineReactive(val, k , val[k]);
+  }
+}
 
 export function defineReactive(obj: Object, k: string, val: any, customSetter?: Function | null) {
 
