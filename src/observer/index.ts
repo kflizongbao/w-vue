@@ -1,4 +1,5 @@
 import arrayIntercept from './arr';
+import { default as Dep,  currentWatcher } from './dep';
 export class Observer {
 
   constructor(val: any) {
@@ -59,15 +60,43 @@ function observe(val: any) {
 
 export function defineReactive(obj: Object, k: string, val: any, customSetter?: Function | null) {
 
+  // 缓存对象的值
+  const descriptor: any = Object.getOwnPropertyDescriptor(obj, k);
+  const getter = descriptor.get;
+  const setter = descriptor.get;
+
+  const dep = new Dep();
+  let value = val;
+
   Object.defineProperty(obj, k, {
     configurable: true,
     enumerable: true,
     writable: true,
     get: function getReactive() {
-
+      let v;
+      if (getter) {
+        v = getter.call(obj);
+      } else {
+        v = value;
+      }
+      if (currentWatcher) {
+        dep.depend();
+      }
+      return v;
     },
-    set: function setReactive() {
+    set: function setReactive(val) {
+      if (val === value) {
+        return;
+      } else if (val !== val && value !== value) {
+        return;
+      }
 
+      if (setter) {
+        setter.call(obj, val);
+      } else {
+        value = val;
+      }
+      dep.notify();
     },
   });
 }

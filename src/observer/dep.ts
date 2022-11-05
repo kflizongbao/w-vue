@@ -1,7 +1,6 @@
 let id = 0;
 import Watcher from './watcher';
 
-let currentWatcher: Watcher;
 export default class Dep {
     id: number;
     subs: Watcher[];
@@ -13,7 +12,7 @@ export default class Dep {
 
     depend() {
         if (currentWatcher) {
-        
+            currentWatcher.addDep(this);
         }
     }
 
@@ -37,4 +36,16 @@ export default class Dep {
     }
 
 };
+
+export let currentWatcher: Watcher;
+const targetArr: Watcher[] = [];
+
+export function pushWatcher(target: Watcher) {
+    targetArr.push(currentWatcher = target);
+}
+
+export function popWatcher(target: Watcher) {
+    targetArr.pop();
+    currentWatcher = targetArr[targetArr.length - 1];
+}
 
